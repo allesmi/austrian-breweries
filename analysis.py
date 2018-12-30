@@ -25,7 +25,6 @@ neighbors = KNeighborsClassifier(n_neighbors = 1, metric = mydist).fit(features,
 
 # # Test with municipalities
 features = np.array(list(map(lambda municipality: municipality['location'], municipalities)))
-# labels = np.array(list(map(lambda municipality: municipality['municipality'], municipalities)))
 
 print('Calculating neighbors for municipalities...')
 distances, indices = neighbors.kneighbors(features)
@@ -37,7 +36,6 @@ for i in range(len(distances)):
 	index = indices[i][0]
 	print('Gemeinde:', municipality)
 	print(f'Distanz: {distance:.2f} km')
-	# print('Index:', index)
 	print(f'Nächste Brauerei: {breweries[index]["name"]} in {breweries[index]["municipality"]}')
 
 	distance2brewery.append( (municipality, distance) )
@@ -47,10 +45,3 @@ print(distance2brewery[0], distance2brewery[-1])
 
 oame_hund_distance = int(len(distance2brewery) * 0.9)
 print(f'90% der österreichen Gemeinden sind weniger als {distance2brewery[oame_hund_distance][1]:.2f} km von einer Brauerei entfernt')
-
-	# print(breweries[indices[i]])
-# distances, indices = neighbors.kneighbors(features)
-# print(indices)
-# print(distances)
-
-# for municipality in municipalities:
